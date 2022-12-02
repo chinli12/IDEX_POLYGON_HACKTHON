@@ -1,86 +1,87 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { ethers, bigNumberify } from "ethers";
+import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { ethers } from 'ethers'
 
-import Header from "../components/header";
-import Crypto from "../components/crypto";
-import Cryptomobile from "../components/cryptomobile";
-import Sharebox from "../components/sharebox";
-import Postcard from "../components/postcard";
-import Popup from "../components/Popup";
-import "./home.css";
-import images from "../image/images (3).png";
+import Header from '../components/header'
+import Crypto from '../components/crypto'
+import Ivest from '../components/invest'
+import Cryptomobile from '../components/cryptomobile'
+import Sharebox from '../components/sharebox'
+import Postcard from '../components/postcard'
+import Popup from '../components/Popup'
+import './home.css'
+import images from '../image/images (3).png'
 const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
-  const [profile, setProfile] = useState("");
-  const [nfts, setNfts] = useState("");
-  const [posts, setPosts] = useState("");
-  const [monitize, setMonitize] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [Followers, setFollowers] = useState(0);
-  const [myprofile, setMyprofile] = useState("");
-  const [ispostmoni, setIspostmoni] = useState(false);
-  const [conversion, setConversion] = useState("");
-  const [promoni, setPromoni] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [postadree, setPostadree] = useState("");
-  const [younft, setYounft] = useState("");
+  const [profile, setProfile] = useState('')
+  const [nfts, setNfts] = useState('')
+  const [posts, setPosts] = useState('')
+  const [monitize, setMonitize] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [Followers, setFollowers] = useState(0)
+  const [myprofile, setMyprofile] = useState('')
+  const [ispostmoni, setIspostmoni] = useState(false)
+  const [conversion, setConversion] = useState('')
+  const [promoni, setPromoni] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [postadree, setPostadree] = useState('')
+  const [younft, setYounft] = useState('')
 
   const loadMyNFTs = async () => {
     // Get users nft ids
 
-    console.log("you", younft);
-    setLoading(true);
-    const ismonitize = await contract.ismontizeprofile(address);
-    setMonitize(ismonitize);
-    console.log("monitzpro", monitize);
-    const results = await contract.getMyNfts(address);
+    console.log('you', younft)
+    setLoading(true)
+    const ismonitize = await contract.ismontizeprofile(address)
+    setMonitize(ismonitize)
+    console.log('monitzpro', monitize)
+    const results = await contract.getMyNfts(address)
     // Fetch metadata of each nft and add that to nft object.
     let nfts = await Promise.all(
       results.map(async (i) => {
         // get uri url of nft
-        const uri = await contract.tokenURI(i);
+        const uri = await contract.tokenURI(i)
         // fetch nft metadata
-        const response = await fetch(uri);
-        const metadata = await response.json();
+        const response = await fetch(uri)
+        const metadata = await response.json()
         return {
           id: i,
 
           username: metadata.username,
           avatar: metadata.avatar,
-        };
+        }
       })
-    );
-    setNfts(nfts);
-    getProfile(nfts);
-  };
+    )
+    setNfts(nfts)
+    getProfile(nfts)
+  }
   const loadMyprofile = async () => {
     // Get users nft ids
 
-    const pro = await contract.Profiled(address);
-    const follow = await contract.getfollwerCount(address);
-    const f = parseInt(follow);
+    const pro = await contract.Profiled(address)
+    const follow = await contract.getfollwerCount(address)
+    const f = parseInt(follow)
 
     // Fetch metadata of each nft and add that to nft object.
-    setFollowers(f);
-    setMyprofile(pro);
-  };
+    setFollowers(f)
+    setMyprofile(pro)
+  }
   const getProfile = async (nfts) => {
-    const id = await contract.Profiles(address);
-    const profile = nfts.find((i) => i.id.toString() === id.toString());
-    setProfile(profile);
-    setLoading(false);
-  };
+    const id = await contract.Profiles(address)
+    const profile = nfts.find((i) => i.id.toString() === id.toString())
+    setProfile(profile)
+    setLoading(false)
+  }
   useEffect(() => {
     if (!nfts) {
-      loadMyNFTs();
-      loadMyprofile();
+      loadMyNFTs()
+      loadMyprofile()
     }
-  });
+  })
   const loadPosts = async () => {
     // Get all posts
-    let results = await contract.getAllPosts();
+    let results = await contract.getAllPosts()
     // Fetch metadata of each post and add that to post object.
 
     let posts = await Promise.all(
@@ -88,28 +89,28 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
         // use hash to fetch the post's metadata stored on ipfs
         let response = await fetch(
           `https://polygonchinli.infura-ipfs.io/ipfs/${i.hash}`
-        );
+        )
 
-        const metadataPost = await response.json();
+        const metadataPost = await response.json()
 
         //post monitization
-        const ispostmoni = await contract.ispostmonitiz(i.id);
-        setIspostmoni(ispostmoni);
+        const ispostmoni = await contract.ispostmonitiz(i.id)
+        setIspostmoni(ispostmoni)
         //profile monitization
-        const promoni = await contract.ismontizeprofile(i.author);
-        setPromoni(promoni);
+        const promoni = await contract.ismontizeprofile(i.author)
+        setPromoni(promoni)
         // get authors nft profile
         // get conversion
 
         // fetch nft for post
 
         // fetch nft profile metadata
-        const nftId = await contract.Profiles(i.author);
+        const nftId = await contract.Profiles(i.author)
         // get uri url of nft profile
-        const uri = await contract.tokenURI(nftId);
+        const uri = await contract.tokenURI(nftId)
 
-        response = await fetch(uri);
-        const metadataProfile = await response.json();
+        response = await fetch(uri)
+        const metadataProfile = await response.json()
         // define author object
         const author = {
           address: i.author,
@@ -117,7 +118,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           avatar: metadataProfile.avatar,
           monitization: i.monitization,
           tokenURI: i.tokenURI,
-        };
+        }
         // define post object
         let post = {
           id: i.id,
@@ -128,60 +129,60 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           author,
 
           monitization: i.monitization,
-        };
-        return post;
+        }
+        return post
       })
-    );
-    posts = posts.sort((a, b) => b.tipAmount - a.tipAmount);
+    )
+    posts = posts.sort((a, b) => b.tipAmount - a.tipAmount)
     // Sort posts from most tipped to least tipped.
-    setPosts(posts);
-    setLoading(false);
-  };
+    setPosts(posts)
+    setLoading(false)
+  }
   useEffect(() => {
     if (!posts) {
-      loadPosts();
+      loadPosts()
     }
-  });
+  })
   const support = async () => {
-    const pro = await contract.Profiled(postadree);
+    const pro = await contract.Profiled(postadree)
 
-    const price = pro.price;
-    const pay = price.toString();
-    console.log(pay);
+    const price = pro.price
+    const pay = price.toString()
+    console.log(pay)
     try {
       const suppo = await contract.follow(postadree, tokencontract.address, {
         value: ethers.utils.parseEther(pay),
-      });
-      suppo.wait();
-      console.log(postadree);
+      })
+      suppo.wait()
+      console.log(postadree)
     } catch (e) {
-      console.log(e.massage);
-      window.alert(e.data.message);
+      console.log(e.massage)
+      window.alert(e.data.message)
     }
-  };
+  }
   const toggleModal = () => {
-    setModal(!modal);
-    console.log(postadree);
-    console.log(younft);
-  };
+    setModal(!modal)
+    console.log(postadree)
+    console.log(younft)
+  }
 
   if (modal) {
-    document.body.classList.add("active-modal");
+    document.body.classList.add('active-modal')
   } else {
-    document.body.classList.remove("active-modal");
+    document.body.classList.remove('active-modal')
   }
   const tip = async (post) => {
     // tip post owner
-    console.log("tippin");
+    console.log('tippin')
     await (
       await contract.tipownerpost(post.id, tokencontract.address, {
-        value: ethers.utils.parseEther("0.1"),
+        value: ethers.utils.parseEther('0.1'),
       })
-    ).wait();
-    loadPosts();
-  };
+    ).wait()
+    loadPosts()
+  }
   if (!account) {
-    return <Redirect to="/" />;
+    return <Redirect to="/" />
   }
   if (loading)
     return (
@@ -214,7 +215,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           </div>
         </div>
       </div>
-    );
+    )
   return (
     <div className="home-container">
       <Helmet>
@@ -224,17 +225,17 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
       <Header
         Idex="IDEX"
         address={address}
-        User_name={!profile ? "" : profile.username}
+        User_name={!profile ? '' : profile.username}
       ></Header>
 
       <div className="home-mainwrapper">
         <div className="home-wrapperleft">
           <Link to="/invest" className="home-navlink">
-            <Crypto
+            <Ivest
               heading="Invest crypto"
               rootClassName="crypto-root-class-name"
               className="home-component1"
-            ></Crypto>
+            />
           </Link>
           <Link to="/buy" className="home-navlink1">
             <Crypto
@@ -296,11 +297,11 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
                     monitize={monitize}
                   />
                 </div>
-              );
+              )
             })
           ) : (
             <div className="text-center">
-              <main style={{ padding: "1rem 0" }}>
+              <main style={{ padding: '1rem 0' }}>
                 <h2>No posts yet</h2>
               </main>
             </div>
@@ -315,7 +316,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
                 src={!profile ? images : profile.avatar}
                 className="home-image"
               />
-              <span className="home-text">{""}</span>
+              <span className="home-text">{''}</span>
             </div>
             <div className="home-profile-list">
               <span className="home-text1">Following</span>
@@ -334,7 +335,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
