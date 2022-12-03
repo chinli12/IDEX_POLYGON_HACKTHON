@@ -7,6 +7,7 @@ import "./postcard.css";
 
 const Postcard = (props) => {
   const post = props.post;
+  const key = props.key;
   const ispostmoni = props.ispostmoni;
   const promoni = props.promoni;
   const address = props.address;
@@ -22,7 +23,7 @@ const Postcard = (props) => {
   };
 
   return (
-    <div className={`postcard-container ${props.rootClassName} `}>
+    <div key={key} className={`postcard-container ${props.rootClassName} `}>
       <div className="postcard-topwrapper">
         <div className="postcard-container1">
           <Link to="/profile" className="postcard-navlink">

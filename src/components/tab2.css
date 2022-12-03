@@ -9,9 +9,9 @@
   margin-top: var(--dl-space-space-unit);
   align-items: flex-start;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .tab2-tab2 {
     width: 100%;
   }

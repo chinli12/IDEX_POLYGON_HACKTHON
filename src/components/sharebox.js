@@ -50,9 +50,11 @@ const Sharebox = (props) => {
     try {
       const result = await client.add(JSON.stringify({ video, post }));
       setLoading(true);
-      setPost("");
+
       let hash = result.path;
       await (await contract.craetepost(hash)).wait();
+      setPost("");
+      setVideo(null);
       setLoading(false);
       loadPosts();
 

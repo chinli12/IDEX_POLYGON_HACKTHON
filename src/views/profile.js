@@ -143,9 +143,9 @@ const Profile = (props) => {
           <span className="profile-text">{profile.username}</span>
         </div>
         <div className="profile-container3">
-          <span className="profile-text1">Following {following}</span>
-          <span className="profile-text2">Followers: {Followers}</span>
-          <span className="profile-text3">post 12</span>
+          <span className="profile-text1">Supporting {following}</span>
+          <span className="profile-text2">Supporter: {Followers}</span>
+          <span className="profile-text3">post {posts.length}</span>
         </div>
         {myprofile.user == address ? (
           <Link to="/setting" className="profile-navlink">
@@ -153,7 +153,12 @@ const Profile = (props) => {
           </Link>
         ) : null}
       </div>
-      <Tab posts={posts} rootClassName="tab-root-class-name"></Tab>
+      <Tab
+        posts={posts}
+        nfts={nfts}
+        contract={contract}
+        rootClassName="tab-root-class-name"
+      ></Tab>
     </div>
   );
 };

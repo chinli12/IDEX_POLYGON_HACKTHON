@@ -1,28 +1,18 @@
 import React from "react";
 
-import PropTypes from "prop-types";
-
-import Postcard from "./Postcardmi";
+import Postmy from "./Postmy";
 import "./tab1.css";
 
 const Tab1 = (props) => {
   const posts = props.posts;
+  const contract = props.contract;
   return (
-    <div className={`tab1-container ${props.rootClassName} `}>
+    <div className="tabb-tabb">
       {posts.length > 0 ? (
         posts.map((post, key) => {
           return (
             <div key={key}>
-              <Postcard
-                post={post}
-                key={key}
-                ispostmoni={ispostmoni}
-                promoni={promoni}
-                toggleModal={toggleModal}
-                setPostadree={setPostadree}
-                postadree={postadree}
-                address={address}
-              />
+              <Postmy post={post} contract={contract} key={key} />
             </div>
           );
         })
@@ -35,14 +25,6 @@ const Tab1 = (props) => {
       )}
     </div>
   );
-};
-
-Tab1.defaultProps = {
-  rootClassName: "",
-};
-
-Tab1.propTypes = {
-  rootClassName: PropTypes.string,
 };
 
 export default Tab1;
