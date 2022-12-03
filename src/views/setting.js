@@ -211,7 +211,7 @@ const Setting = ({ contract, address, name, account }) => {
       </Helmet>
       <Header
         Idex={name}
-        User_name="john dow"
+        User_name={!profile ? "" : profile.username}
         rootClassName="header-root-class-name"
       ></Header>
       {!profile ? (
