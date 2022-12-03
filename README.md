@@ -18,12 +18,13 @@ This project demonstrates a basic of decentralize social media where cretors sha
 
 # TECH STACK USED
 
-REACT JS
-SOLIDITY
-JAVASCRIPT
-CSS
-HTML
+REACT JS,
+SOLIDITY,
+JAVASCRIPT,
+CSS,
+HTML,
 HARDHAT
+Ethers js
 
 # NETWORK DEPLOYED TO
 
