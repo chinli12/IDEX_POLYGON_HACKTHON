@@ -1,0 +1,179 @@
+.select-bank-select-bank {
+  width: 579px;
+  height: 599px;
+  display: flex;
+  position: relative;
+  align-self: center;
+  box-shadow: 20px 20px 20px 0px #d4d4d4;
+  margin-top: var(--dl-space-space-unit);
+  padding-top: var(--dl-space-space-oneandhalfunits);
+  border-color: rgba(120, 120, 120, 0.4);
+  border-style: dashed;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-oneandhalfunits);
+  justify-content: center;
+  background-color: var(--dl-color-success-btn);
+}
+.select-bank-text {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  font-family: Poppins;
+}
+.select-bank-wrapperselectpayment {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-halfunit);
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
+}
+.select-bank-select {
+  width: 393px;
+  height: 52px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.select-bank-text1 {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  margin-top: var(--dl-space-space-unit);
+  font-family: Poppins;
+}
+.select-bank-wrapperselectbank {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-halfunit);
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
+}
+.select-bank-select1 {
+  width: 393px;
+  height: 52px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.select-bank-text2 {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  margin-top: var(--dl-space-space-unit);
+  font-family: Poppins;
+}
+.select-bank-wrapperaccountnumber {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  flex-direction: column;
+  justify-content: center;
+}
+.select-bank-textinput {
+  width: 393px;
+  height: 53px;
+  align-self: center;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.select-bank-text3 {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  margin-top: var(--dl-space-space-unit);
+  font-family: Poppins;
+}
+.select-bank-wrapperacountname {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  flex-direction: column;
+  justify-content: center;
+}
+.select-bank-textinput1 {
+  width: 393px;
+  height: 52px;
+  align-self: center;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.select-bank-text4 {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  margin-top: var(--dl-space-space-unit);
+  font-family: Poppins;
+}
+.select-bank-wrapperwallet {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  flex-direction: column;
+  justify-content: center;
+}
+.select-bank-textinput2 {
+  width: 393px;
+  height: 52px;
+  align-self: center;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.select-bank-button {
+  width: 121px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: var(--dl-space-space-twounits);
+  transition: 0.3s;
+}
+.select-bank-button:hover {
+  background-color: #6062ec;
+}
+
+@media(max-width: 991px) {
+  .select-bank-wrapperacountname {
+    width: 100%;
+    margin-top: var(--dl-space-space-unit);
+  }
+  .select-bank-textinput1 {
+    margin-top: 0px;
+  }
+  .select-bank-wrapperwallet {
+    width: 100%;
+    margin-top: var(--dl-space-space-unit);
+  }
+  .select-bank-textinput2 {
+    margin-top: 0px;
+  }
+}
+@media(max-width: 479px) {
+  .select-bank-select-bank {
+    width: 100%;
+    height: 620px;
+  }
+  .select-bank-wrapperaccountnumber {
+    width: 100%;
+    height: auto;
+    margin-top: var(--dl-space-space-unit);
+  }
+  .select-bank-textinput {
+    width: 100%;
+    margin-top: 0px;
+  }
+  .select-bank-wrapperacountname {
+    width: 100%;
+    margin-top: var(--dl-space-space-unit);
+  }
+  .select-bank-textinput1 {
+    width: 100%;
+    margin-top: 0px;
+  }
+  .select-bank-wrapperwallet {
+    width: 100%;
+    margin-top: var(--dl-space-space-unit);
+  }
+  .select-bank-textinput2 {
+    width: 100%;
+    margin-top: 0px;
+  }
+  .select-bank-root-class-name {
+    width: 100%;
+  }
+}

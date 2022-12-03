@@ -1,0 +1,276 @@
+.profile-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #d9d9d9;
+}
+.profile-container1 {
+  width: 580px;
+  height: 275px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  margin-top: var(--dl-space-space-oneandhalfunits);
+  align-items: flex-start;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: column;
+  background-color: var(--dl-color-gray-white);
+}
+.profile-container2 {
+  gap: var(--dl-space-space-unit);
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.profile-image {
+  width: 100px;
+  height: var(--dl-size-size-medium);
+  align-self: center;
+  object-fit: cover;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.profile-text {
+  color: var(--dl-color-gray-700);
+  align-self: center;
+  margin-top: var(--dl-space-space-unit);
+}
+.profile-container3 {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.profile-text1 {
+  color: var(--dl-color-success-btn);
+  font-family: Poppins;
+}
+.profile-text2 {
+  color: var(--dl-color-success-btn);
+  font-family: Poppins;
+}
+.profile-text3 {
+  color: var(--dl-color-success-btn);
+  font-family: Poppins;
+}
+.profile-navlink {
+  top: 35px;
+  right: 56px;
+  cursor: pointer;
+  position: absolute;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.profile-navlink:hover {
+  padding: var(--dl-space-space-halfunit);
+  border-radius: var(--dl-radius-radius-radius8);
+  background-color: var(--dl-color-success-btn);
+}
+@media (max-width: 479px) {
+  .profile-container1 {
+    width: 100%;
+  }
+  .profile-text1 {
+    font-size: 12px;
+  }
+  .profile-text2 {
+    font-size: 12px;
+  }
+  .profile-text3 {
+    font-size: 12px;
+  }
+}
+/**animation*/
+.container {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+h4 {
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: sans-serif;
+  color: rgb(70, 81, 239);
+}
+
+.wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.spinner {
+  width: 5px;
+  height: 5px;
+  background-color: rgb(0, 30, 255);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 0.5px rgb(0, 6030, 255);
+}
+
+.loader:first-child {
+  transform: rotate(120deg);
+  animation: load1 2s linear 1.1s infinite;
+}
+
+.loader:nth-child(2) {
+  transform: rotate(90deg);
+  animation: load2 2s linear 1.2s infinite;
+}
+
+.loader:nth-child(3) {
+  transform: rotate(60deg);
+  animation: load3 2s linear 1.3s infinite;
+}
+
+.loader:nth-child(4) {
+  transform: rotate(30deg);
+  animation: load4 2s linear 1.4s infinite;
+}
+
+.loader:nth-child(5) {
+  transform: rotate(10deg);
+  animation: load5 2s linear 1.5s infinite;
+}
+
+.loader:nth-child(6) {
+  animation: load6 2s linear 1.6s infinite;
+}
+
+.loader:nth-child(7) {
+  animation: load7 2s linear 1.7s infinite;
+}
+
+.loader:last-child {
+  animation: load8 2s linear 1.8s infinite;
+}
+
+@keyframes load1 {
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: rotate(339deg);
+    opacity: 1;
+  }
+}
+
+@keyframes load2 {
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: rotate(342deg);
+    opacity: 1;
+  }
+}
+
+@keyframes load3 {
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: rotate(345deg);
+    opacity: 1;
+  }
+}
+
+@keyframes load4 {
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: rotate(348deg);
+    opacity: 1;
+  }
+}
+
+@keyframes load5 {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(351deg);
+    opacity: 0;
+  }
+}
+
+@keyframes load6 {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(354deg);
+    opacity: 0;
+  }
+}
+
+@keyframes load7 {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(357deg);
+    opacity: 0;
+  }
+}
+
+@keyframes load8 {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}

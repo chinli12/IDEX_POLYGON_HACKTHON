@@ -1,0 +1,92 @@
+.enter-type-enter-type {
+  width: 540px;
+  height: 466px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  align-self: center;
+  box-shadow: 20px 20px 20px 0px #d4d4d4;
+  margin-top: var(--dl-space-space-oneandhalfunits);
+  border-color: rgba(120, 120, 120, 0.4);
+  border-style: dashed;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dl-color-success-btn);
+}
+.enter-type-text {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  font-family: Poppins;
+}
+.enter-type-wrapperyoupay {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
+}
+.enter-type-textinput {
+  width: var(--dl-size-size-xxlarge);
+  height: 52px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.enter-type-select {
+  width: 89px;
+  height: 52px;
+  border-radius: var(--dl-radius-radius-radius8);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.enter-type-text1 {
+  color: var(--dl-color-gray-white);
+  align-self: center;
+  font-family: Poppins;
+}
+.enter-type-wrapperyourecieve {
+  width: 100%;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
+}
+.enter-type-textinput1 {
+  width: var(--dl-size-size-xxlarge);
+  height: 52px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.enter-type-select1 {
+  width: 89px;
+  height: 52px;
+  border-radius: var(--dl-radius-radius-radius8);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.enter-type-button {
+  width: 121px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: var(--dl-space-space-twounits);
+  transition: 0.3s;
+}
+.enter-type-button:hover {
+  background-color: #6062ec;
+}
+
+@media(max-width: 479px) {
+  .enter-type-enter-type {
+    width: 100%;
+  }
+  .enter-type-root-class-name {
+    width: 100%;
+  }
+}

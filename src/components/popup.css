@@ -1,0 +1,130 @@
+.component-container {
+  width: 380px;
+  height: 436px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  align-items: flex-start;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: column;
+  background-color: var(--dl-color-gray-white);
+}
+.component-text {
+  color: var(--dl-color-success-btn);
+  font-size: 24px;
+  align-self: center;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: 500;
+  margin-bottom: var(--dl-space-space-unit);
+}
+.component-image {
+  width: 100%;
+  height: 462px;
+  object-fit: cover;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.component-container1 {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.component-button {
+  color: var(--dl-color-gray-white);
+  width: var(--dl-size-size-large);
+  cursor: pointer;
+  align-self: center;
+  margin-top: var(--dl-space-space-oneandhalfunits);
+  border-width: 0px;
+  background-color: var(--dl-color-success-btn);
+}
+.component-button1 {
+  color: var(--dl-color-gray-white);
+  width: var(--dl-size-size-medium);
+  cursor: pointer;
+  align-self: center;
+  margin-top: var(--dl-space-space-oneandhalfunits);
+  border-width: 0px;
+  background-color: var(--dl-color-gray-500);
+}
+@media (max-width: 767px) {
+  .component-container {
+    width: 265px;
+    height: 358px;
+    padding: 0px;
+  }
+  .component-image {
+    height: 240px;
+  }
+}
+@media (max-width: 479px) {
+  .component-container {
+    width: 265px;
+    height: 350px;
+    margin: 0px;
+  }
+  .component-image {
+    height: 240px;
+  }
+  .component-container1 {
+    width: 100%;
+    height: 61px;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .component-button1 {
+    width: var(--dl-size-size-medium);
+    align-self: center;
+    background-color: var(--dl-color-gray-500);
+  }
+}
+/*btn mode*/
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 10%;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+}
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}

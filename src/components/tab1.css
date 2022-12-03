@@ -1,0 +1,17 @@
+.tab1-container {
+  width: 789px;
+  height: 612px;
+  display: inline-block;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+}
+.tab1-root-class-name {
+  display: flex;
+}
+@media (max-width: 479px) {
+  .tab1-root-class-name {
+    width: 100%;
+  }
+}

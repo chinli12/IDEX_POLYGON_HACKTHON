@@ -1,0 +1,41 @@
+.crypto-crypto {
+  width: 192px;
+  cursor: pointer;
+  height: 63px;
+  display: flex;
+  position: relative;
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  transition: 0.3s;
+  align-items: center;
+  border-radius: var(--dl-radius-radius-radius8);
+  justify-content: flex-start;
+  background-color: var(--dl-color-success-btn);
+}
+.crypto-crypto:hover {
+  width: 194px;
+  transition: inherit;
+  background-color: #484af5;
+}
+.crypto-icon {
+  fill: var(--dl-color-gray-white);
+  width: var(--dl-size-size-small);
+  height: 24px;
+}
+.crypto-text {
+  color: var(--dl-color-gray-white);
+}
+.crypto-root-class-name {
+  align-self: center;
+}
+
+
+
+@media(max-width: 479px) {
+  .crypto-root-class-name1 {
+    display: none;
+  }
+  .crypto-root-class-name4 {
+    height: 28px;
+  }
+}

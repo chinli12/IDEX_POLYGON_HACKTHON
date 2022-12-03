@@ -1,0 +1,70 @@
+.cryptomobile-container {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.cryptomobile-icon {
+  width: 24px;
+  height: 24px;
+}
+
+
+@media(max-width: 991px) {
+  .cryptomobile-container {
+    width: 120px;
+    padding: var(--dl-space-space-halfunit);
+    border-radius: var(--dl-radius-radius-radius8);
+    flex-direction: row;
+    background-color: var(--dl-color-success-btn);
+  }
+  .cryptomobile-icon {
+    fill: var(--dl-color-gray-white);
+  }
+  .cryptomobile-text {
+    color: var(--dl-color-gray-white);
+    align-self: center;
+    margin-left: var(--dl-space-space-halfunit);
+  }
+}
+@media(max-width: 767px) {
+  .cryptomobile-container {
+    width: 120px;
+    padding: var(--dl-space-space-halfunit);
+    border-radius: var(--dl-radius-radius-radius8);
+    flex-direction: row;
+    background-color: var(--dl-color-success-btn);
+  }
+  .cryptomobile-icon {
+    fill: var(--dl-color-gray-white);
+    align-self: center;
+  }
+  .cryptomobile-text {
+    color: var(--dl-color-gray-white);
+    align-self: center;
+    margin-left: var(--dl-space-space-halfunit);
+  }
+}
+@media(max-width: 479px) {
+  .cryptomobile-container {
+    width: 80px;
+    height: 30px;
+    padding: var(--dl-space-space-halfunit);
+    margin-left: var(--dl-space-space-unit);
+    border-radius: var(--dl-radius-radius-radius8);
+    flex-direction: row;
+    background-color: var(--dl-color-success-btn);
+  }
+  .cryptomobile-icon {
+    fill: var(--dl-color-gray-white);
+    align-self: center;
+  }
+  .cryptomobile-text {
+    color: var(--dl-color-gray-white);
+    font-size: 11px;
+    align-self: center;
+    margin-left: var(--dl-space-space-halfunit);
+  }
+}
