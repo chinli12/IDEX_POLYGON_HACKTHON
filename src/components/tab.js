@@ -27,8 +27,7 @@ const Tab = (props) => {
         </button>
       </div>
       <div className="tab-container2">
-        <TAB1 hidden={index != 0} posts={posts} />
-        <TAB2 hidden={index != 1} />
+        {index == 0 ? <TAB1 posts={posts} /> : <TAB2 />}
       </div>
     </div>
   );
