@@ -47,6 +47,7 @@ contract Idex is ERC721URIStorage {
         uint256 tipamount;
         address payable author;
         bool monitization;
+        string nft;
     }
     struct Profile {
         uint256 id;
@@ -107,7 +108,7 @@ contract Idex is ERC721URIStorage {
         }
 
         if (_monitiz == true) {
-            if (msg.value.getConversionRate() < price) {
+            if (msg.value < price) {
                 revert paymentfaild();
             }
 
@@ -125,7 +126,7 @@ contract Idex is ERC721URIStorage {
             _setTokenURI(tokenCount, pr.tokenURI);
             IdexToken idx = IdexToken(_token);
             idx.mint(msg.sender, 1 ether);
-            fl.idx += price;
+            fl.idx += i ether;
 
             SupportNft memory nft = SupportNft({
                 id: tokenCount,
@@ -202,7 +203,8 @@ contract Idex is ERC721URIStorage {
         _Post.monitization = true;
     }
 
-    function craetepost(string memory _posthash) external {
+    function craetepost(string memory _posthash, address id) external {
+        Profile storage fl = Profiled[id];
         if (balanceOf(msg.sender) < 1) {
             revert mustownNft();
         }
@@ -216,13 +218,21 @@ contract Idex is ERC721URIStorage {
             hash: _posthash,
             tipamount: 0,
             author: payable(msg.sender),
-            monitization: false
+            monitization: false,
+            nft: fl.tokenURI
             //id: allItems.length,
             //nameOfItem: _name,
             //typeofItem: _type,
             //value: _value
         });
-        Posts[postid] = Post(postid, _posthash, 0, payable(msg.sender), false);
+        Posts[postid] = Post(
+            postid,
+            _posthash,
+            0,
+            payable(msg.sender),
+            false,
+            fl.tokenURI
+        );
         allPosts.push(post);
         PosTowner[postid] = msg.sender;
 
@@ -258,7 +268,7 @@ contract Idex is ERC721URIStorage {
             IdexToken idx = IdexToken(_token);
             idx.mint(msg.sender, 1 ether);
             Profile storage tp = Profiled[msg.sender];
-            tp.idx += 1;
+            tp.idx += 1 ether;
             emit PostTiped(_id, _Post.hash, _Post.tipamount, _Post.author);
         }
     }
@@ -307,22 +317,6 @@ contract Idex is ERC721URIStorage {
         }
     }
 
-    function getMypost() external view returns (Post[] memory) {
-        Post[] memory post = new Post[](allPosts.length);
-        uint counter = 0;
-        for (uint i = 0; i < allPosts.length; i++) {
-            if (PosTowner[i + 1] == msg.sender) {
-                post[counter] = allPosts[i];
-                counter++;
-            }
-        }
-        Post[] memory result = new Post[](counter);
-        for (uint i = 0; i < counter; i++) {
-            result[i] = post[i];
-        }
-        return result;
-    }
-
     // Fetches all of the users nfts
     function getMyNfts(
         address _add
@@ -343,7 +337,10 @@ contract Idex is ERC721URIStorage {
         return fl.tokenURI;
     }
 
-    function getconva(uint256 amount) public view returns (uint) {
+    function getconva(uint256 _idx) public view returns (uint) {
+        uint256 amount;
+        Post storage _Post = Posts[_idx];
+        amount = _Post.tipamount;
         return amount.getConversionRate();
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { ethers } from "ethers";
+import { ethers, bigNumberify } from "ethers";
 
 import Header from "../components/header";
 import Crypto from "../components/crypto";
@@ -25,11 +25,12 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
   const [promoni, setPromoni] = useState(false);
   const [modal, setModal] = useState(false);
   const [postadree, setPostadree] = useState("");
-  const [younft, setYounft] = useState();
+  const [younft, setYounft] = useState("");
 
   const loadMyNFTs = async () => {
     // Get users nft ids
 
+    console.log("you", younft);
     setLoading(true);
     const ismonitize = await contract.ismontizeprofile(address);
     setMonitize(ismonitize);
@@ -100,16 +101,6 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
         // get conversion
 
         // fetch nft for post
-        const token = await contract.Profiled(i.author);
-
-        const Tokenuri = await fetch(token.tokenURI);
-
-        const mytoken = await Tokenuri.json();
-
-        const yourtoken = {
-          avatar: mytoken.picture,
-          price: mytoken.price,
-        };
 
         // fetch nft profile metadata
         const nftId = await contract.Profiles(i.author);
@@ -124,7 +115,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           username: metadataProfile.username,
           avatar: metadataProfile.avatar,
           monitization: i.monitization,
-          tokenURI: yourtoken,
+          tokenURI: i.tokenURI,
         };
         // define post object
         let post = {
@@ -132,6 +123,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           content: metadataPost.post,
           video: metadataPost.video,
           tipAmount: i.tipamount,
+          nft: i.nft,
           author,
 
           monitization: i.monitization,
@@ -169,6 +161,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
   const toggleModal = () => {
     setModal(!modal);
     console.log(postadree);
+    console.log(younft);
   };
 
   if (modal) {
@@ -176,7 +169,16 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
   } else {
     document.body.classList.remove("active-modal");
   }
-
+  const tip = async (post) => {
+    // tip post owner
+    console.log("tippin");
+    await (
+      await contract.tipownerpost(post.id, tokencontract.address, {
+        value: ethers.utils.parseEther("0.1"),
+      })
+    ).wait();
+    loadPosts();
+  };
   if (!account) {
     return <Redirect to="/" />;
   }
@@ -263,6 +265,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
               avater={profile.avatar}
               contract={contract}
               loadPosts={loadPosts}
+              address={address}
             ></Sharebox>
           ) : (
             <Link to="/setting" className="home-navlink4">
@@ -283,8 +286,12 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
                     setPostadree={setPostadree}
                     postadree={postadree}
                     address={address}
-                    younft={younft}
                     setYounft={setYounft}
+                    contract={contract}
+                    younft={younft}
+                    tip={tip}
+                    modal={modal}
+                    support={support}
                   />
                 </div>
               );
@@ -312,7 +319,9 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
               <span className="home-text1">Following</span>
               <span className="home-text2">Followers {Followers}</span>
               <span className="home-text3">post</span>
-              <span className="home-text4">Idx: {parseInt(myprofile.idx)}</span>
+              <span className="home-text4">
+                Idx ballance: {parseInt(myprofile.idx)}
+              </span>
             </div>
             {profile ? (
               <Link to={`/profile/${address}`} className="home-navlink5 button">
@@ -322,13 +331,6 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           </div>
         </div>
       </div>
-      <Popup
-        modal={modal}
-        toggleModal={toggleModal}
-        support={support}
-        younft={younft}
-        contract={contract}
-      />
     </div>
   );
 };

@@ -63,11 +63,10 @@ const Setting = ({ contract, address, name, account }) => {
     console.log("this resul:", { results });
     const response = await fetch(results);
     // Fetch metadata of each nft and add that to nft object.
-    const metadata = await response.json();
 
-    setNftsupt(metadata.picture);
-    setNftprice(metadata.price);
-    console.log(metadata.avatar);
+    setNftsupt(response.picture);
+    setNftprice(response.price);
+    console.log(response.avatar);
   };
   const getProfile = async (nfts) => {
     const address = await contract.signer.getAddress();
@@ -97,12 +96,13 @@ const Setting = ({ contract, address, name, account }) => {
   const uploadToIPFS2 = async (event) => {
     event.preventDefault();
     const file = event.target.files[0];
+    console.log(typeof file);
     if (typeof file !== "undefined") {
       try {
         const result = await client.add(file);
 
-        setPicture(`https://polygonchinli.infura-ipfs.io/ipfs/${result.path}`);
-        console.log(result);
+        setPicture(result.path);
+        console.log(result.path);
 
         console.log("this a:", picture);
       } catch (error) {
@@ -134,7 +134,7 @@ const Setting = ({ contract, address, name, account }) => {
     event.preventDefault();
     if (!picture || !price) return;
     try {
-      const result = await client.add(JSON.stringify({ picture, price }));
+      const result = await client.add(picture);
       setLoading(true);
 
       console.log(price);
@@ -165,8 +165,8 @@ const Setting = ({ contract, address, name, account }) => {
   useEffect(() => {
     if (!nfts) {
       loadMyNFTs();
+      loadNFTs();
     }
-    loadNFTs();
   });
   if (!account) {
     return <Redirect to="/" />;

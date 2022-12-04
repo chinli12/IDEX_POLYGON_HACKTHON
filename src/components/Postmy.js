@@ -30,7 +30,7 @@ const Postmy = (props) => {
         />
         <span className="postmy-text">{post.author.username}</span>
       </div>
-      <video src={post.video} className="postmy-video" controls></video>
+      <img src={post.video} className="postmy-video" />
       <div className="postmy-container1">
         {post.monitization != true ? (
           <button onClick={() => postmoni(post.id)} className="button btn2">

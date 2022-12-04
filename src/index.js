@@ -116,7 +116,7 @@ const App = () => {
           path="/"
         />
         <Route
-          component={() => <Profile contract={contract} />}
+          component={() => <Profile contract={contract} address2={address} />}
           exact
           path="/profile/:id"
         />

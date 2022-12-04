@@ -12,6 +12,7 @@ import "./profile.css";
 
 const Profile = (props) => {
   const contract = props.contract;
+  const address2 = props.address2;
   const idex = useLocation().pathname.split("/")[2];
   const address = idex.toString();
   const [profile, setProfile] = useState("");
@@ -172,7 +173,7 @@ const Profile = (props) => {
           <span className="profile-text2">Supporter: {Followers}</span>
           <span className="profile-text3">post {posts.length}</span>
         </div>
-        {myprofile.user == address ? (
+        {myprofile.user == address2 ? (
           <Link to="/setting" className="profile-navlink">
             Setting
           </Link>

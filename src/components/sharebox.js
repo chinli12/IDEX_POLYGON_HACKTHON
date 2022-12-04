@@ -13,6 +13,7 @@ const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
 const Sharebox = (props) => {
   const contract = props.contract;
   const loadPosts = props.loadPosts;
+  const address = props.address;
   const [post, setPost] = useState("");
   const [video, setVideo] = useState(null);
 
@@ -52,7 +53,7 @@ const Sharebox = (props) => {
       setLoading(true);
 
       let hash = result.path;
-      await (await contract.craetepost(hash)).wait();
+      await (await contract.craetepost(hash, address)).wait();
       setPost("");
       setVideo(null);
       setLoading(false);
