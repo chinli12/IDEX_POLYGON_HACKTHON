@@ -21,6 +21,7 @@ const Profile = (props) => {
   const [following, setFollowing] = useState(0);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState("");
+  const [mypost, setMypost] = useState("");
   const loadMyNFTs = async () => {
     // Get users nft ids
     console.log("addty", address);
@@ -33,10 +34,10 @@ const Profile = (props) => {
         // get uri url of nft
         const uri = await contract.tokenURI(i);
         // fetch nft metadata
-        console.log(uri);
+
         const response = await fetch(uri);
         const metadata = await response.json();
-        console.log(metadata);
+
         return {
           id: i,
 
@@ -60,9 +61,6 @@ const Profile = (props) => {
     setFollowers(f);
     setFollowing(parseInt(folowing));
     setMyprofile(pro);
-    console.log(pro);
-    console.log(f);
-    console.log("mypro:", pro);
   };
   const getProfile = async (nfts) => {
     const id = await contract.Profiles(address);
@@ -75,9 +73,32 @@ const Profile = (props) => {
       loadMyprofile();
     }
   });
+  const getmypost = (allpost, address) => {
+    console.log(address);
+    let mypost = [];
+    for (let i = 0; i < allpost.length; i++) {
+      console.log("thor:", allpost[i].author.address);
+      if (allpost[i].author.address == address) {
+        console.log(true);
+        let post = {
+          id: allpost[i].id,
+          content: allpost[i].content,
+          video: allpost[i].video,
+          tipAmount: allpost[i].tipAmount,
+          author: allpost[i].author,
+          monitization: allpost[i].monitization,
+          owner: true,
+        };
+        mypost.push(post);
+        console.log(mypost);
+      }
+    }
+    return mypost;
+  };
   const loadPosts = async () => {
     // Get all posts
-    let results = await contract.getMypost();
+    let mypost = [];
+    let results = await contract.getAllPosts();
     // Fetch metadata of each post and add that to post object.
 
     let posts = await Promise.all(
@@ -102,6 +123,8 @@ const Profile = (props) => {
           address: i.author,
           username: metadataProfile.username,
           avatar: metadataProfile.avatar,
+          monitization: i.monitization,
+          tokenURI: i.tokenURI,
         };
         // define post object
         let post = {
@@ -110,13 +133,15 @@ const Profile = (props) => {
           video: metadataPost.video,
           tipAmount: i.tipamount,
           author,
+          monitization: i.monitization,
         };
         return post;
       })
     );
     posts = posts.sort((a, b) => b.tipAmount - a.tipAmount);
     // Sort posts from most tipped to least tipped.
-    setPosts(posts);
+    setPosts(getmypost(posts, address));
+
     setLoading(false);
   };
   useEffect(() => {
@@ -155,6 +180,7 @@ const Profile = (props) => {
       </div>
       <Tab
         posts={posts}
+        address={address}
         nfts={nfts}
         contract={contract}
         rootClassName="tab-root-class-name"

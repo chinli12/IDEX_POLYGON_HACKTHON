@@ -14,17 +14,11 @@ const Postmy = (props) => {
     let ismoni = false;
     ismoni = await contract.ispostmonitiz(id);
     if (ismoni) {
-      console.log(ismoni);
+      return;
     }
     const tx = await contract.monitizepost(id);
     tx.wait();
   };
-  function che() {
-    console.log(post.monitization);
-  }
-  useEffect(() => {
-    che();
-  });
 
   return (
     <div key={key} className="postmy-postmy">
@@ -39,13 +33,13 @@ const Postmy = (props) => {
       <video src={post.video} className="postmy-video" controls></video>
       <div className="postmy-container1">
         {post.monitization != true ? (
-          <button onClick={() => postmoni(post.id)} className="button">
+          <button onClick={() => postmoni(post.id)} className="button btn2">
             {props.button}
           </button>
         ) : (
           <button
-            className={`button btn2${
-              post.monitization != true ? "moni" : null
+            className={`button btn2 ${
+              post.monitization != false ? "moni" : null
             }`}
           >
             Monitized

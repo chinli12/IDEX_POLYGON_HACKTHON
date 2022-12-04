@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import "./popup.css";
 
 const AppComponent = (props) => {
+  const [url, setUrl] = useState("");
   const modal = props.modal;
+  const younft = props.younft;
   const toggleModal = props.toggleModal;
   const support = props.support;
 
@@ -19,7 +21,7 @@ const AppComponent = (props) => {
               <span className="component-text">{props.Title}</span>
               <img
                 alt={props.image_alt}
-                src={props.image_src}
+                src={younft}
                 className="component-image"
               />
               <div className="component-container1">

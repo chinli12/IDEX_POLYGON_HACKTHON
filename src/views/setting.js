@@ -206,7 +206,7 @@ const Setting = ({ contract, address, name, account }) => {
   return (
     <div className="setting-container">
       <Helmet>
-        <title>Setting - Insidious Kind Oryx</title>
+        <title>Setting - IDEX</title>
         <meta property="og:title" content="Setting - Insidious Kind Oryx" />
       </Helmet>
       <Header

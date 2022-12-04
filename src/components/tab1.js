@@ -6,6 +6,7 @@ import "./tab1.css";
 const Tab1 = (props) => {
   const posts = props.posts;
   const contract = props.contract;
+  
   return (
     <div className="tabb-tabb">
       {posts.length > 0 ? (

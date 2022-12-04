@@ -25,10 +25,11 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
   const [promoni, setPromoni] = useState(false);
   const [modal, setModal] = useState(false);
   const [postadree, setPostadree] = useState("");
+  const [younft, setYounft] = useState();
 
   const loadMyNFTs = async () => {
     // Get users nft ids
-    console.log(address);
+
     setLoading(true);
     const ismonitize = await contract.ismontizeprofile(address);
     setMonitize(ismonitize);
@@ -62,8 +63,6 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
     // Fetch metadata of each nft and add that to nft object.
     setFollowers(f);
     setMyprofile(pro);
-    console.log(pro);
-    console.log(f);
   };
   const getProfile = async (nfts) => {
     const id = await contract.Profiles(address);
@@ -100,10 +99,23 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
         // get authors nft profile
         // get conversion
 
+        // fetch nft for post
+        const token = await contract.Profiled(i.author);
+
+        const Tokenuri = await fetch(token.tokenURI);
+
+        const mytoken = await Tokenuri.json();
+
+        const yourtoken = {
+          avatar: mytoken.picture,
+          price: mytoken.price,
+        };
+
+        // fetch nft profile metadata
         const nftId = await contract.Profiles(i.author);
         // get uri url of nft profile
         const uri = await contract.tokenURI(nftId);
-        // fetch nft profile metadata
+
         response = await fetch(uri);
         const metadataProfile = await response.json();
         // define author object
@@ -111,6 +123,8 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           address: i.author,
           username: metadataProfile.username,
           avatar: metadataProfile.avatar,
+          monitization: i.monitization,
+          tokenURI: yourtoken,
         };
         // define post object
         let post = {
@@ -119,6 +133,8 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           video: metadataPost.video,
           tipAmount: i.tipamount,
           author,
+
+          monitization: i.monitization,
         };
         return post;
       })
@@ -146,7 +162,8 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
       suppo.wait();
       console.log(postadree);
     } catch (e) {
-      console.log(e);
+      console.log(e.massage);
+      window.alert(e.data.message);
     }
   };
   const toggleModal = () => {
@@ -256,7 +273,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           {posts.length > 0 ? (
             posts.map((post, key) => {
               return (
-                <div key={key}>
+                <div idx={key}>
                   <Postcard
                     post={post}
                     key={key}
@@ -266,6 +283,8 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
                     setPostadree={setPostadree}
                     postadree={postadree}
                     address={address}
+                    younft={younft}
+                    setYounft={setYounft}
                   />
                 </div>
               );
@@ -303,7 +322,13 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
           </div>
         </div>
       </div>
-      <Popup modal={modal} toggleModal={toggleModal} support={support} />
+      <Popup
+        modal={modal}
+        toggleModal={toggleModal}
+        support={support}
+        younft={younft}
+        contract={contract}
+      />
     </div>
   );
 };

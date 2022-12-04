@@ -7,23 +7,27 @@ import "./postcard.css";
 
 const Postcard = (props) => {
   const post = props.post;
-  const key = props.key;
+  const idx = props.idx;
   const ispostmoni = props.ispostmoni;
   const promoni = props.promoni;
   const address = props.address;
   const toggleModal = props.toggleModal;
   const setPostadree = props.setPostadree;
   const postadree = props.postadree;
+  const setYounft = props.setYounft;
+  const younft = props.younft;
 
   const handleClick = (userId) => {
-    const re = setPostadree(userId);
+    setPostadree(userId.author.address);
+    setYounft(userId.author.tokenURI.avatar);
+    console.log(younft);
     console.log(postadree);
-    console.log(address);
+
     toggleModal();
   };
 
   return (
-    <div key={key} className={`postcard-container ${props.rootClassName} `}>
+    <div idx={idx} className={`postcard-container ${props.rootClassName} `}>
       <div className="postcard-topwrapper">
         <div className="postcard-container1">
           <Link to="/profile" className="postcard-navlink">
@@ -39,12 +43,9 @@ const Postcard = (props) => {
           >
             {post.author.username}
           </Link>
-          {promoni &&
-          address.toLowerCase() === post.author.address.toLowerCase() ? null : (
-            <span
-              onClick={() => handleClick(post.author.address)}
-              className="postcard-text"
-            >
+          {post.author.monitization &&
+          address === post.author.address ? null : (
+            <span onClick={() => handleClick(post)} className="postcard-text">
               {props.text1}
             </span>
           )}
@@ -55,7 +56,7 @@ const Postcard = (props) => {
         <video src={post.video} controls className="postcard-video"></video>
       </div>
       <div className="postcard-footerwrapper">
-        {ispostmoni ? (
+        {post.monitization ? (
           <>
             <span className="postcard-text2">
               {" "}
