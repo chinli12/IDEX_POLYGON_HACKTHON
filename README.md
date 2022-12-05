@@ -24,7 +24,8 @@ JAVASCRIPT
 CSS
 HTML
 HARDHAT
-
+# Demo
+https://idex-polygon-hackthon.vercel.app/
 # NETWORK DEPLOYED TO
 
 POLYGON MUMBIA TESTNATE
