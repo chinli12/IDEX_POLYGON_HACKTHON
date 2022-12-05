@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import PropTypes from 'prop-types'
-
-import './oder-view.css'
+import "./oder-view.css";
 
 const OderView = (props) => {
+  const nextpage = props.nextpage;
   return (
     <div className="oder-view-oder-view">
       <div className="oder-view-container">
@@ -45,33 +46,35 @@ const OderView = (props) => {
         <span className="oder-view-text16">{props.text3}</span>
       </div>
       <div className="oder-view-container10">
-        <button className="oder-view-button button">{props.button}</button>
+        <button onClick={() => nextpage(3)} className="oder-view-button button">
+          {props.button}
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 OderView.defaultProps = {
-  text13: 'Reference',
-  text9: 'Account Number',
-  text2: 'Time remaining: 00:00',
-  text12: 'Ezechinyere Ogochukwu ',
-  heading1: '20,000 NG',
-  text7: 'Bank',
-  text8: 'Fidelity',
-  text10: '6318270866',
-  text14: 'XB_fed1bfe2d89a4a99a6f42bedf760f192',
-  text5: 'When you Pay',
-  button: 'I have made the transfer',
-  text11: 'Account Name',
-  text: '1BUSD = 789NG',
+  text13: "Reference",
+  text9: "Account Number",
+  text2: "Time remaining: 00:00",
+  text12: "Ezechinyere Ogochukwu ",
+  heading1: "20,000 NG",
+  text7: "Bank",
+  text8: "Fidelity",
+  text10: "6318270866",
+  text14: "XB_fed1bfe2d89a4a99a6f42bedf760f192",
+  text5: "When you Pay",
+  button: "I have made the transfer",
+  text11: "Account Name",
+  text: "1BUSD = 789NG",
   text1: "Send Money to the Merchant's Account details provided below.",
-  heading: '20,000 NG',
-  text6: 'Bank',
-  text4: 'When you Pay',
+  heading: "20,000 NG",
+  text6: "Bank",
+  text4: "When you Pay",
   text3:
-    'Please make a payment within 15:00 mins, otherwise, the order will be cancelled',
-}
+    "Please make a payment within 15:00 mins, otherwise, the order will be cancelled",
+};
 
 OderView.propTypes = {
   text13: PropTypes.string,
@@ -92,6 +95,6 @@ OderView.propTypes = {
   text6: PropTypes.string,
   text4: PropTypes.string,
   text3: PropTypes.string,
-}
+};
 
-export default OderView
+export default OderView;

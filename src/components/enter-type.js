@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import PropTypes from 'prop-types'
-
-import './enter-type.css'
+import "./enter-type.css";
 
 const EnterType = (props) => {
+  const nextpage = props.nextpage;
   return (
     <div className={`enter-type-enter-type ${props.rootClassName} `}>
       <span className="enter-type-text">{props.text}</span>
@@ -50,19 +51,21 @@ const EnterType = (props) => {
           </option>
         </select>
       </div>
-      <button className="enter-type-button button">{props.button}</button>
+      <button onClick={() => nextpage(1)} className="enter-type-button button">
+        {props.button}
+      </button>
     </div>
-  )
-}
+  );
+};
 
 EnterType.defaultProps = {
-  button: 'Countinue',
-  rootClassName: '',
-  text1: 'You recieve',
-  textinput_placeholder: 'Enter amount',
-  textinput_placeholder1: 'Cypto Amount',
-  text: 'You pay',
-}
+  button: "Countinue",
+  rootClassName: "",
+  text1: "You recieve",
+  textinput_placeholder: "Enter amount",
+  textinput_placeholder1: "Cypto Amount",
+  text: "You pay",
+};
 
 EnterType.propTypes = {
   button: PropTypes.string,
@@ -71,6 +74,6 @@ EnterType.propTypes = {
   textinput_placeholder: PropTypes.string,
   textinput_placeholder1: PropTypes.string,
   text: PropTypes.string,
-}
+};
 
-export default EnterType
+export default EnterType;

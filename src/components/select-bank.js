@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import PropTypes from 'prop-types'
-
-import './select-bank.css'
+import "./select-bank.css";
 
 const SelectBank = (props) => {
+  const nextpage = props.nextpage;
   return (
     <div className={`select-bank-select-bank ${props.rootClassName} `}>
       <span className="select-bank-text">{props.text}</span>
@@ -28,16 +29,16 @@ const SelectBank = (props) => {
             Access Bank
           </option>
           <option value="WNT" className="">
-            WNT
+            Zenith Bank
           </option>
           <option value="USDT" className="">
-            USDT
+            Guranty Trust Bank
           </option>
           <option value="USDC" className="">
-            USDC
+            Citibank
           </option>
           <option value="New Option" className="">
-            New Option
+            Ecobank
           </option>
         </select>
       </div>
@@ -68,23 +69,25 @@ const SelectBank = (props) => {
           className="select-bank-textinput2 input"
         />
       </div>
-      <button className="select-bank-button button">{props.button}</button>
+      <button onClick={() => nextpage(2)} className="select-bank-button button">
+        {props.button}
+      </button>
     </div>
-  )
-}
+  );
+};
 
 SelectBank.defaultProps = {
-  text1: 'Select Bank',
-  text4: 'Wallet Adreass',
-  text2: 'Account Number',
-  button: 'Countinue',
-  text: 'Select Payment',
-  rootClassName: '',
-  textinput_placeholder2: 'Wallet Adreass',
-  textinput_placeholder: 'Account Number',
-  textinput_placeholder1: 'Account Name',
-  text3: 'Account Name',
-}
+  text1: "Select Bank",
+  text4: "Wallet Adreass",
+  text2: "Account Number",
+  button: "Countinue",
+  text: "Select Payment",
+  rootClassName: "",
+  textinput_placeholder2: "Wallet Adreass",
+  textinput_placeholder: "Account Number",
+  textinput_placeholder1: "Account Name",
+  text3: "Account Name",
+};
 
 SelectBank.propTypes = {
   text1: PropTypes.string,
@@ -97,6 +100,6 @@ SelectBank.propTypes = {
   textinput_placeholder: PropTypes.string,
   textinput_placeholder1: PropTypes.string,
   text3: PropTypes.string,
-}
+};
 
-export default SelectBank
+export default SelectBank;

@@ -7,6 +7,23 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.buy-container1 {
+  width: 83px;
+  height: 70px;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: center;
+  margin-left: var(--dl-space-space-twounits);
+  flex-direction: column;
+  justify-content: center;
+}
+.buy-text {
+  cursor: pointer;
+  padding: var(--dl-space-space-unit);
+  border-color: var(--dl-color-gray-black);
+  border-width: 2px;
+  border-radius: var(--dl-radius-radius-radius8);
+}
 .buy-wrapper {
   width: 100%;
   height: auto;

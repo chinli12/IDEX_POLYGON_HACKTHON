@@ -19,7 +19,6 @@ const Postmy = (props) => {
     const tx = await contract.monitizepost(id);
     tx.wait();
   };
-
   return (
     <div key={key} className="postmy-postmy">
       <div className="postmy-container">
@@ -30,16 +29,16 @@ const Postmy = (props) => {
         />
         <span className="postmy-text">{post.author.username}</span>
       </div>
-      <img src={post.video} className="postmy-video" />
+      <video src={post.video} className="postmy-video"></video>
       <div className="postmy-container1">
-        {post.monitization != true ? (
+        {post.monitization == false ? (
           <button onClick={() => postmoni(post.id)} className="button btn2">
             {props.button}
           </button>
         ) : (
           <button
             className={`button btn2 ${
-              post.monitization != false ? "moni" : null
+              post.monitization == true ? "moni" : null
             }`}
           >
             Monitized
