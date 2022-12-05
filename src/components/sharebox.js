@@ -31,7 +31,12 @@ const Sharebox = (props) => {
   const uploadToIPFS = async (event) => {
     event.preventDefault();
     const file = event.target.files[0];
-    if (typeof file !== "undefined") {
+    console.log(file);
+    console.log(file.type);
+    if (file.type != "video/mp4") {
+      window.alert("only video accepted");
+    }
+    if (typeof file !== "undefined" && file.type === "video/mp4") {
       try {
         setLoading(true);
         const result = await client.add(file);
