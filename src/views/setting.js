@@ -134,19 +134,15 @@ const Setting = ({ contract, address, name, account }) => {
     event.preventDefault();
     if (!picture || !price) return;
     try {
-      const result = await client.add(picture);
       setLoading(true);
 
       console.log(price);
       console.log(picture);
-      if (!result) {
-        console(" no result");
-      }
 
       await (
         await contract.monitizeprofile(
           price,
-          `https://polygonchinli.infura-ipfs.io/ipfs/${result.path}`
+          `https://polygonchinli.infura-ipfs.io/ipfs/${picture}`
         )
       ).wait();
       loadNFTs();
@@ -155,6 +151,7 @@ const Setting = ({ contract, address, name, account }) => {
       console.log(result);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   const switchProfile = async (nft) => {

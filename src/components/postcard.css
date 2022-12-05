@@ -146,7 +146,24 @@
   transition: 0.3s;
   align-items: stretch;
 }
+
 .postcard-tipwrapper:hover {
+  box-shadow: 5px 5px 10px 0px #2d7bad;
+  border-radius: var(--dl-radius-radius-radius8);
+  background-color: #272ae5;
+}
+
+.postcard-tipwrapper1 {
+  width: auto;
+  cursor: pointer;
+  height: 28px;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  position: relative;
+  transition: 0.3s;
+  align-items: stretch;
+}
+.postcard-tipwrapper1:hover {
   box-shadow: 5px 5px 10px 0px #2d7bad;
   border-radius: var(--dl-radius-radius-radius8);
   background-color: #272ae5;

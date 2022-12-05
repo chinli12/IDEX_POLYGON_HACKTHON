@@ -12,18 +12,6 @@ const AppComponent = (props) => {
   const toggleModal = props.toggleModal;
   const support = props.support;
   const nft = props.nft;
-  const fetchurl = async () => {
-    const result = await fetch(nft);
-    const nftmy = result.json();
-    let nfts = {
-      avater: nftmy.picture,
-    };
-    setUrl(nfts);
-  };
-  useEffect(() => {
-    fetchurl();
-    console.log("this nf", url);
-  }, []);
 
   return (
     <>
@@ -35,7 +23,7 @@ const AppComponent = (props) => {
               <span className="component-text">{props.Title}</span>
               <img
                 alt={props.image_alt}
-                src={nft}
+                src={younft}
                 className="component-image"
               />
               <div className="component-container1">

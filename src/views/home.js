@@ -34,6 +34,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
     setLoading(true);
     const ismonitize = await contract.ismontizeprofile(address);
     setMonitize(ismonitize);
+    console.log("monitzpro", monitize);
     const results = await contract.getMyNfts(address);
     // Fetch metadata of each nft and add that to nft object.
     let nfts = await Promise.all(
@@ -292,6 +293,7 @@ const Home = ({ contract, tokencontract, hasProfile, account, address }) => {
                     tip={tip}
                     modal={modal}
                     support={support}
+                    monitize={monitize}
                   />
                 </div>
               );
