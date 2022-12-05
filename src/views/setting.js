@@ -57,17 +57,20 @@ const Setting = ({ contract, address, name, account }) => {
     getProfile(nfts);
   };
 
-  const loadNFTs = async () => {
+  const loadMyprofile = async () => {
     // Get users nft ids
-    const results = await contract.getsupportnft();
-    console.log("this resul:", { results });
-    const response = await fetch(results);
-    // Fetch metadata of each nft and add that to nft object.
 
-    setNftsupt(response.picture);
-    setNftprice(response.price);
-    console.log(response.avatar);
+    const pro = await contract.Profiled(address);
+    console.log("my", pro);
+    setNftprice(parseInt(pro.price));
+    setNftsupt(pro.tokenURI);
+    // set following and followers
   };
+
+  // set following and followers
+
+  // Fetch metadata of each nft and add that to nft object.
+
   const getProfile = async (nfts) => {
     const address = await contract.signer.getAddress();
 
@@ -145,7 +148,7 @@ const Setting = ({ contract, address, name, account }) => {
           `https://polygonchinli.infura-ipfs.io/ipfs/${picture}`
         )
       ).wait();
-      loadNFTs();
+      loadMyprofile();
       setLoading(false);
       console.log(txt);
       console.log(result);
@@ -162,7 +165,7 @@ const Setting = ({ contract, address, name, account }) => {
   useEffect(() => {
     if (!nfts) {
       loadMyNFTs();
-      loadNFTs();
+      loadMyprofile();
     }
   });
   if (!account) {
