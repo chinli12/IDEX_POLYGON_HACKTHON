@@ -126,7 +126,7 @@ contract Idex is ERC721URIStorage {
             _setTokenURI(tokenCount, pr.tokenURI);
             IdexToken idx = IdexToken(_token);
             idx.mint(msg.sender, 1 ether);
-            fl.idx += i ether;
+            fl.idx += price;
 
             SupportNft memory nft = SupportNft({
                 id: tokenCount,
